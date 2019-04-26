@@ -19,6 +19,7 @@ namespace :load_mp do
     mps = JSON.load(open("http://dubnomp.oporaua.org//"))
     mps.each do |m|
       p m["photo_url"]
+      next if m["photo_url"] == "http://dubno-adm.rv.ua/UserFiles/depytat/dudkoli.jpg"
       photo = MiniMagick::Image.open(URI.encode(m["photo_url"]))
       photo.resize "200x200"
       photo.format 'png'
